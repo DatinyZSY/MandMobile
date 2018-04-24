@@ -4,11 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Axios from 'axios'
-import MandMobile from 'mand-mobile'
+// import mandMobile from 'mand-mobile'
 import '../static/css/base.css'
-import {request, response, Error} from './service/httpInterceptor';
+import '../static/css/theme.custom.styl'
 
-Vue.use(MandMobile);
+import {request, response, Error} from './service/httpInterceptor';
 
 Vue.config.productionTip = false;
 

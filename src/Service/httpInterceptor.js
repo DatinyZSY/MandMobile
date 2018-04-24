@@ -1,4 +1,5 @@
 import {API_ROOT} from '../config'
+import {Toast} from 'mand-mobile'
 
 var loadingTimer = null;
 
@@ -37,10 +38,7 @@ function sendErrorLog(log,result) {
 // request
 export const request = (config) => {
   if(checkLoadUrl(config)){
-    Indicator.open({
-      text: '拼命加载中...',
-      spinnerType: 'fading-circle'
-    });
+    Toast.loading('载入中');
   }
 
   // 若需要登录在请求头添加token
@@ -54,7 +52,7 @@ export const request = (config) => {
 // Error
 export const Error = (error) => {
   if (error.response.status === 500) {
-    Indicator.close();
+    Toast.hide();
     // Toast('服务器异常')
   }
 
@@ -70,7 +68,7 @@ export const response = (response) => {
 
   clearTimeout(loadingTimer);
   loadingTimer = setTimeout(() => {
-    Indicator.close();
+    Toast.hide();
     clearTimeout(loadingTimer);
   }, 300);
 
