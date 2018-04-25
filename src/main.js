@@ -6,7 +6,6 @@ import router from './router'
 import Axios from 'axios'
 // import mandMobile from 'mand-mobile'
 import '../static/css/base.css'
-import '../static/css/theme.custom.styl'
 
 import {request, response, Error} from './service/httpInterceptor';
 

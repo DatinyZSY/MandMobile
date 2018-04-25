@@ -3,6 +3,7 @@ const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
+const resolve = file => path.resolve(__dirname, file)
 
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -55,14 +56,26 @@ exports.cssLoaders = function (options) {
   }
 
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
+  const stylusMixins = [
+    '~nib/lib/nib/vendor.styl',
+    '~nib/lib/nib/gradients.styl',
+    '~nib/lib/nib/flex.styl',
+    resolve('../static/css/mixin/theme.styl'),
+    resolve('../static/css/mixin/util.styl')
+  ]
+
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
-    stylus: generateLoaders('stylus'),
-    styl: generateLoaders('stylus')
+    stylus: generateLoaders('stylus', {
+      import: stylusMixins
+    }),
+    styl: generateLoaders('stylus', {
+      import: stylusMixins
+    })
   }
 }
 

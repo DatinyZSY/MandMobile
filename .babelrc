@@ -10,7 +10,6 @@
   ],
   "plugins": ["transform-vue-jsx", "transform-runtime",["import", {
     "libraryName": "mand-mobile",
-    "style": false,
     "libraryDirectory": "components"
   }]],
   "env": {
