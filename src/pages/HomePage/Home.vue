@@ -4,10 +4,11 @@
       <img src="//manhattan.didistatic.com/static/manhattan/mand/docs/mand-logo-black.svg" alt="">
     </div>
     <div class="md-home-name" data-in-effect="fadeInLeftBig">
-      Mand Mobile
+      <!--DATINY ZSY-->
+      GIVE TO MY LITTLE QIN QIN
     </div>
     <div class="md-home-time">0%</div>
-    <h1 class="md-home-copyright">Produced By DiDi - FDC &times; MFE</h1>
+    <h1 class="md-home-copyright">Produced By DATINY - ZSY &times; MXQ</h1>
   </div>
 </template>
 
