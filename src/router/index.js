@@ -9,12 +9,12 @@ export default new Router({
     {
       path: '/',
       name: 'rootPage',
-      component: resolve => require(['@/pages/HomePage/rootPage'], resolve),
+      component: p => require(['@/pages/HomePage/rootPage'], p),
       children: [
         {
           path: '/HomePage/Home',
           name: 'HomePage.Home',
-          component: resolve => require(['@/pages/HomePage/Home'], resolve),
+          component: p => require(['@/pages/HomePage/Home'], p),
           meta: {title: '首页'},
         }
       ],
