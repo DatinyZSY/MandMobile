@@ -19,9 +19,6 @@
     data: () => ({
       options: {
         sectionsColor: ['green','orange','gray','red'],
-        navigation: true,
-        navigationPosition: 'left',
-        navigationTooltips: ['one', 'two', 'three', 'four'],
         css3: true,
         autoScrolling: true,
         continuousVertical: true,
