@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     timeCount(fn) {
-      const duration = 2000;
+      const duration = 2500;
       const tick = 100;
       const per = 100 / (duration / tick);
 
