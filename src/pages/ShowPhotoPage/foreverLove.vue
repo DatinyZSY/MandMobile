@@ -22,7 +22,7 @@
       },
     }),
     methods: {},
-    created () {
+    mounted () {
       $('#fullPage').fullpage(this.options);
     }
   }
