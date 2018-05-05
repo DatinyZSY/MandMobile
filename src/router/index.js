@@ -16,6 +16,12 @@ export default new Router({
           name: 'HomePage.Home',
           component: p => require(['@/pages/HomePage/Home'], p),
           meta: {title: '首页'},
+        },
+        {
+          path: '/HomePage/foreverLove',
+          name: 'HomePage.foreverLove',
+          component: p => require(['@/pages/ShowPhotoPage/foreverLove'], p),
+          meta: {title: '永恒之爱'},
         }
       ],
       redirect: {name: 'HomePage.Home'}

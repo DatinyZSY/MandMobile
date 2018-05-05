@@ -286,4 +286,4 @@
     type: 'char'
   };
 
-}(window.jQuery||window.Zepto));
+}(window.jQuery));

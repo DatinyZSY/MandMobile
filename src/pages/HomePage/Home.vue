@@ -20,12 +20,13 @@ export default {
     }
   },
   mounted () {
-    // require.ensure(['./category'], () => {}, 'category');
     $('.md-home-name')
       .textillate()
       .on('end.tlt');
     this.timeCount(() => {
-      // this.$router.replace('/category')
+      this.$router.replace({
+        name: 'HomePage.foreverLove'
+      })
     });
   },
   methods: {

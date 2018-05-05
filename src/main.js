@@ -11,7 +11,6 @@ import {request, response, Error} from './service/httpInterceptor';
 
 Vue.config.productionTip = false;
 
-
 // 移动端改变Title
 // router.beforeEach(function (to, from, next) {
 //   if (to.meta && to.meta.title){
@@ -19,7 +18,6 @@ Vue.config.productionTip = false;
 //   }
 //   next();
 // });
-
 Axios.interceptors.request.use(request);
 
 Axios.interceptors.response.use(response, Error);
