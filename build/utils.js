@@ -61,7 +61,8 @@ exports.cssLoaders = function (options) {
     '~nib/lib/nib/gradients.styl',
     '~nib/lib/nib/flex.styl',
     resolve('../static/css/mixin/theme.styl'),
-    resolve('../static/css/mixin/util.styl')
+    resolve('../static/css/mixin/util.styl'),
+    resolve('../static/css/theme.custom.styl')
   ]
 
   return {

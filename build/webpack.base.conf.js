@@ -52,6 +52,18 @@ module.exports = {
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
+        test: /\.styl$/,
+        use: [
+          'css-loader',
+          {
+            loader: 'stylus-loader',
+            options: {
+              import:['theme.custom.styl']
+            }
+          }
+        ]
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
