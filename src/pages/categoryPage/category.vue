@@ -1,34 +1,65 @@
 <template>
     <div>
-      <div class="md-example-child md-example-child-date-picker md-example-child-date-picker-0">
-        <md-date-picker
-          ref="datePicker"
-          today-text="今天"
-          :minDate="minDate"
-          :maxDate="maxDate"
-          :default-date="currentDate"
-          is-view
-          @initialed="onDatePickerInitialed"
-        ></md-date-picker>
+      <div class="md-example-child md-example-child-action-sheet">
+        <md-button @click="$_showActionSheet">唤起动作面板</md-button>
+        <md-action-sheet
+          v-model="value"
+          :title="title"
+          :default-index="defaultIndex"
+          :invalid-index="invalidIndex"
+          :cancel-text="cancelText"
+          :options="options"
+          @selected="$_selected"
+          @cancel="$_cancel"
+        ></md-action-sheet>
       </div>
     </div>
 </template>
 
 <script>
-  import {DatePicker} from 'mand-mobile'
+  import {ActionSheet, Button, Dialog} from 'mand-mobile'
     export default {
       data: () => ({
-        minDate: new Date('2013/9/9'),
-        maxDate: new Date('2020/9/9'),
-        currentDate: new Date(),
+        value: false,
+        title: '操作说明的title',
+        options: [
+          {
+            label: '选项1',
+            value: 0,
+          },
+          {
+            label: '选项2',
+            value: 1,
+          },
+          {
+            label: '选项3',
+            value: 2,
+          },
+        ],
+        defaultIndex: 1,
+        invalidIndex: 2,
+        cancelText: '取消',
       }),
       methods: {
-        onDatePickerInitialed() {
-          console.log(`[Mand Mobile] DatePicker getFormatDate: ${this.$refs.datePicker.getFormatDate('yyyy/MM/dd')}`)
+        $_showActionSheet() {
+          this.value = true
+        },
+        $_selected(item) {
+          Dialog.alert({
+            content: `selected: ${JSON.stringify(item)}`,
+          })
+          console.log('action-sheet selected:', JSON.stringify(item))
+        },
+        $_cancel() {
+          Dialog.alert({
+            content: 'cancel',
+          })
+          console.log('action-sheet cancel')
         },
       },
       components: {
-        [DatePicker.name]: DatePicker,
+        [ActionSheet.name]: ActionSheet,
+        [Button.name]: Button,
       },
     }
 </script>

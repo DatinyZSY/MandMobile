@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "mand-mobile": "^1.0.6",
+    "mand-mobile": "^1.2.3",
     "moment": "^2.22.1",
     "nib": "^1.1.2",
     "node-sass": "^4.8.3",
