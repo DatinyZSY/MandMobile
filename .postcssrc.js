@@ -3,7 +3,7 @@
 module.exports = {
   "plugins": [
     require('postcss-pxtorem')({
-      rootValue: 75,
+      rootValue: 100,
       propWhiteList: []
     })
   ]

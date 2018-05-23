@@ -2,42 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <title>首页</title>
-    <link rel="stylesheet" href="static/css/pace.css">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="stylesheet" href="./static/css/pace.css">
     <link rel="stylesheet" href="./static/css/fade-in-left-big.css">
   </head>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script src="./static/js/zepto-1.2.0.min.js"></script>
+    <script src="./static/js/pace.min.js"></script>
+    <script src="./static/js/jquery.lettering.js"></script>
+    <script src="./static/js/jquery.textillate.js"></script>
   </body>
-  <!--动态改变html font-size的值-->
-  <script>
-    (function (window, document) {
-
-      function resize(){
-        var ww = window.innerWidth;
-        if (ww > window.screen.width) {
-          window.requestAnimationFrame(resize);
-        }
-        else {
-          if (ww > 750) ww = 750;
-          document.documentElement.style.fontSize = ww * 75 / 750 + 'px';
-        }
-      }
-
-      if (document.readyState !== 'loading') {
-        resize();
-      } else {
-        document.addEventListener('DOMContentLoaded', resize);
-      }
-
-      window.addEventListener('resize', resize);
-
-    })(window, document);
-  </script>
-  <script src="./static/js/zepto-1.2.0.min.js"></script>
-  <script src="./static/js/pace.min.js"></script>
-  <script src="./static/js/jquery.lettering.js"></script>
-  <script src="./static/js/jquery.textillate.js"></script>
 </html>

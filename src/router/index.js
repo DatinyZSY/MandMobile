@@ -1,30 +1,50 @@
 "use strict";
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import components from './components.json'
+import * as demo from './demo-index'
 Vue.use(Router);
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'rootPage',
-      component: resolve => require(['@/pages/HomePage/rootPage'], resolve),
-      children: [
-        {
-          path: '/HomePage/Home',
-          name: 'HomePage.Home',
-          component: resolve => require(['@/pages/HomePage/Home'], resolve),
-          meta: {title: '首页'},
-        },
-        {
-          path: '/categoryPage/category',
-          name: 'categoryPage.category',
-          component: resolve => require(['@/pages/categoryPage/category'], resolve),
-          meta: {title: 'Demo'},
-        }
-      ],
-      redirect: {name: 'HomePage.Home'}
-    }
-  ]
-})
+const traverseComponents = (data, fn) => {
+  data.map(item =>
+    item.list && item.list.map(subItem =>
+      fn(subItem)
+    )
+  )
+};
+
+const registerRoute = (components) => {
+  const routes = [];
+  traverseComponents(components, (component) => {
+    routes.push({
+      name: component.name,
+      path: component.path,
+      // require(`../components${component.path}/demo`).default
+      component: demo[component.name] || {},
+      meta: {
+        title: component.name || '',
+        description: component.text || ''
+      }
+    })
+  });
+  return routes
+};
+
+const routes = registerRoute(components);
+
+routes.push({
+  path: '/home',
+  component: demo['Home']
+});
+
+routes.push({
+  path: '/category',
+  component: demo['Category']
+});
+
+routes.push({
+  path: '/',
+  redirect: '/home'
+});
+
+export default new Router({routes})

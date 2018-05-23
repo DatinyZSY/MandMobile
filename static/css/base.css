@@ -1,9 +1,14 @@
 /*normalize.css*/
 html {
+  height: 100%;
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+body {
+  height: 100%;
+}
+ol,li{list-style:none}
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
 article,
 aside,

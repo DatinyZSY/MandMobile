@@ -1,70 +1,180 @@
 <template>
-    <div>
-      <div class="md-example-child md-example-child-action-sheet">
-        <md-button @click="$_showActionSheet">唤起动作面板</md-button>
-        <md-action-sheet
-          v-model="value"
-          :title="title"
-          :default-index="defaultIndex"
-          :invalid-index="invalidIndex"
-          :cancel-text="cancelText"
-          :options="options"
-          @selected="$_selected"
-          @cancel="$_cancel"
-        ></md-action-sheet>
+  <div class="md-cg">
+    <h1 class="md-cg-title">Dooffe - MandMobile Demo</h1>
+    <section
+      v-for="(category, i) in components" :key="i"
+      class="cg-category"
+      :class="{'active': category.show}">
+      <div
+        class="cg-category-title"
+        :class="{'active': category.show}"
+        @click="toggleCategory(i, category)">
+        {{ category.name }}&nbsp;&nbsp;<span>{{ category.text }}</span>
+        <md-icon name="arrow-right" size="lg"></md-icon>
       </div>
-    </div>
+      <transition name="slide-fade">
+        <div class="cg-category-list" v-show="category.show">
+          <div class="cg-category-item"
+               v-for="(item, j) in category.list"
+               :key="j"
+               @click="goToComponent(item.path)">
+            <div class="cg-category-item-inner">
+              {{ item.name }} - {{ item.text }}
+              <md-icon name="arrow-right" size="md"></md-icon>
+            </div>
+          </div>
+          <div class="cg-category-item" @click="toggleCategory(i, category)">
+            <div class="cg-category-item-inner close">收起</div>
+          </div>
+        </div>
+      </transition>
+    </section>
+    <h1 class="md-cg-copyright">Created By ZSY</h1>
+  </div>
 </template>
 
 <script>
-  import {ActionSheet, Button, Dialog} from 'mand-mobile'
-    export default {
-      data: () => ({
-        value: false,
-        title: '操作说明的title',
-        options: [
-          {
-            label: '选项1',
-            value: 0,
-          },
-          {
-            label: '选项2',
-            value: 1,
-          },
-          {
-            label: '选项3',
-            value: 2,
-          },
-        ],
-        defaultIndex: 1,
-        invalidIndex: 2,
-        cancelText: '取消',
-      }),
-      methods: {
-        $_showActionSheet() {
-          this.value = true
-        },
-        $_selected(item) {
-          Dialog.alert({
-            content: `selected: ${JSON.stringify(item)}`,
-          })
-          console.log('action-sheet selected:', JSON.stringify(item))
-        },
-        $_cancel() {
-          Dialog.alert({
-            content: 'cancel',
-          })
-          console.log('action-sheet cancel')
-        },
+  import components from '../../router/components.json'
+  import Icon from '../../components/icon'
+
+  export default {
+    name: 'category',
+    components: {
+      [Icon.name]: Icon,
+    },
+    data() {
+      return {
+        components,
+      }
+    },
+    methods: {
+      toggleCategory(index, category) {
+        category.show = !category.show
+        this.$set(this.components, index, category)
       },
-      components: {
-        [ActionSheet.name]: ActionSheet,
-        [Button.name]: Button,
+      goToComponent(path) {
+        this.$router.push(path)
       },
-    }
+    },
+  }
+
 </script>
 
+<style lang="stylus" scoped>
+block()
+  float left
+  width 100%
+.md-cg
+  padding 20px 20px 50px
+  clearfix()
+  .md-cg-title
+    block()
+    margin 20px 0
+    font-size font-heading-large
+    font-weight font-weight-normal
+    color color-text-minor
+    span
+      color color-text-base
+  .cg-category
+    block()
+    position relative
+    z-index 3
+    height 120px
+    margin-bottom 20px
+    border-radius border-width-base
+    transform translate(0, 0)
+    &.active
+      height auto
+    // box-shadow shadow-bottom
+    .cg-category-title
+      position relative
+      z-index 2
+      block()
+      height 120px
+      padding 0 h-gap-lg
+      line-height 120px
+      font-size font-heading-normal
+      // font-weight font-weight-medium
+      color color-text-base
+      box-sizing border-box
+      box-shadow shadow-bottom
+      background color-bg-base
+      overflow hidden
+      span
+        font-size font-body-large
+        color color-text-minor
+      .md-icon
+        position absolute
+        right h-gap-lg
+        top 50%
+        transform translateY(-50%)
+        transition transform .3s ease-in-out-quint
+      &.active .md-icon
+        transform translateY(-50%) rotate(90deg)
+      &:before
+        content ""
+        position absolute
+        left 0
+        top 0
+        width 4px
+        height 100%
+        border-radius border-width-base
+    // display none
+    &:nth-of-type(1) .cg-category-title:before
+      background #5E83DD
+    &:nth-of-type(2) .cg-category-title:before
+      background #83D23A
+    &:nth-of-type(3) .cg-category-title:before
+      background #FFC013
+    &:nth-of-type(4) .cg-category-title:before
+      background #FF7A2E
+    .cg-category-list
+      block()
+      background #FCFCFC
+      box-shadow shadow-bottom
+      .cg-category-item
+        block()
+        padding 0 h-gap-lg
+        box-sizing border-box
+        -webkit-tap-highlight-color transparent
+        .cg-category-item-inner
+          position relative
+          block()
+          height 100px
+          line-height 100px
+          font-size font-body-normal
+          color color-text-minor
+          hairline(bottom, color-border-base)
+          .md-icon
+            position absolute
+            right 0
+            top 50%
+            transform translateY(-50%)
+          &.close
+            text-align center
+            color color-text-link
+            &:before
+              display none
 
-<style scoped>
 
+  .md-cg-copyright
+    position fixed
+    left 0
+    bottom 20px
+    width 100%
+    text-align center
+    font-size font-minor-normal
+    font-weight 300
+    color color-text-caption
+
+.slide-fade-enter-active
+  transition all .3s ease
+.slide-fade-leave-active
+  transition all .3s ease
+.slide-fade-enter
+  /* .slide-fade-leave-active below version 2.1.8 */
+  transform translate3d(0, -10px, 0)
+  opacity 0
+.slide-fade-leave-to
+  opacity 0
 </style>

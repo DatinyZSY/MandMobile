@@ -20,13 +20,13 @@ export default {
     }
   },
   mounted () {
-    // require.ensure(['./category'], () => {}, 'category');
+    // require.ensure(['../categoryPage/category'], () => {}, 'category');
     $('.md-home-name')
       .textillate()
       .on('end.tlt');
     this.timeCount(() => {
       this.$router.replace({
-        name: 'categoryPage.category'
+        path: '/category'
       })
     })
   },
