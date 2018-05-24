@@ -1,4 +1,5 @@
 // 全局过滤器
+import Vue from 'vue'
 import moment from 'moment'
 function starCover(value, start, end){
   if(start + end > value.length){
@@ -20,7 +21,6 @@ function starCover(value, start, end){
   }
 }
 
-module.exports.install = function(Vue,options){
   // 保留小数点后两位
   Vue.filter('toFixTwo',(value)=>{
     if(value){
@@ -84,6 +84,7 @@ module.exports.install = function(Vue,options){
 
   // 十九位数字，显示前九位后四位
   Vue.filter('cardNum',(value)=>{
+    value = value.toString();
     if(value){
       return starCover(value,9,4)
     }
@@ -91,6 +92,7 @@ module.exports.install = function(Vue,options){
 
   // 显示前四位后四位
   Vue.filter('commonCardNo',(value)=>{
+    value = value.toString();
     if(value){
       return starCover(value,4,4)
     }
@@ -98,8 +100,8 @@ module.exports.install = function(Vue,options){
 
   // 显示手机号前三后四位
   Vue.filter('checkCardPhone',(value)=>{
+    value = value.toString();
     if(value){
       return starCover(value,3,4)
     }
   });
-};
