@@ -1,5 +1,5 @@
 import axios from 'axios'
-import API_ROOT from '../config'
+import {API_ROOT} from '../config'
 
 /* ajax-get */
 export const fetch = (url, data={}) =>{
