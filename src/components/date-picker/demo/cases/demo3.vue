@@ -18,7 +18,7 @@
       title="选择出险时间"
       is-twelve-hours
       :text-render="textRender"
-      :custom-types="['yyyy', 'MM','dd', 'hh']"
+      :custom-types="['yyyy', 'MM','dd', 'hh', 'mm']"
       :default-date="currentDate"
       @change="onDatePickerChange"
       @confirm="onDatePickerConfirm"
@@ -26,7 +26,8 @@
   </div>
 </template>
 
-<script>import {DatePicker, Field, FieldItem} from 'mand-mobile'
+<script>
+import {DatePicker, Field, FieldItem} from 'mand-mobile'
 
 export default {
   name: 'date-picker-demo',
@@ -53,11 +54,7 @@ export default {
       const column2Value = args[3] // 第2列选中值
 
       if (typeFormat === 'dd') {
-        return `${new Date().getMonth() + 1}月${column0Value}日`
-      } else if (typeFormat === 'hh') {
-        return `${column0Value}日${column1Value}时`
-      } else if (typeFormat === 'mm') {
-        return `${column0Value}日${column1Value}时${column2Value}分`
+        return `${column0Value}/${column1Value}/${column2Value}`
       }
     },
     onDatePickerChange(columnIndex, itemIndex, value) {
@@ -69,8 +66,9 @@ export default {
     },
     onDatePickerConfirm(columnsValue) {
       console.log(`[Mand Mobile] DatePicker Confirm\nvalue: ${JSON.stringify(columnsValue)}`)
-      this.datePickerValue = this.$refs.datePicker.getFormatDate('dd日hh时mm分')
+      this.datePickerValue = this.$refs.datePicker.getFormatDate('yyyy/MM/dd hh:mm')
     },
   },
 }
-</script>
+
+</script>
