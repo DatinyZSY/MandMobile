@@ -1,6 +1,6 @@
 // 全局过滤器
 import moment from 'moment'
-function starcover(value, start, end){
+function starCover(value, start, end){
   if(start + end > value.length){
     return value
   }else{
@@ -22,7 +22,7 @@ function starcover(value, start, end){
 
 module.exports.install = function(Vue,options){
   // 保留小数点后两位
-  Vue.filter('tofixtwo',(value)=>{
+  Vue.filter('toFixTwo',(value)=>{
     if(value){
       return Number(value).toFixed(2)
     }else{
@@ -31,7 +31,7 @@ module.exports.install = function(Vue,options){
   });
 
   // 保留小数点后两位%
-  Vue.filter('tofixtwoPer',(value)=>{
+  Vue.filter('toFixTwoPer',(value)=>{
     if(value){
       return Number(value).toFixed(4)+'%'
     }else{
@@ -85,21 +85,21 @@ module.exports.install = function(Vue,options){
   // 十九位数字，显示前九位后四位
   Vue.filter('cardNum',(value)=>{
     if(value){
-      return starcover(value,9,4)
+      return starCover(value,9,4)
     }
   });
 
   // 显示前四位后四位
   Vue.filter('commonCardNo',(value)=>{
     if(value){
-      return starcover(value,4,4)
+      return starCover(value,4,4)
     }
   });
 
   // 显示手机号前三后四位
   Vue.filter('checkCardPhone',(value)=>{
     if(value){
-      return starcover(value,3,4)
+      return starCover(value,3,4)
     }
   });
 };
