@@ -18,7 +18,7 @@
       title="选择出险时间"
       is-twelve-hours
       :text-render="textRender"
-      :custom-types="['yyyy', 'MM','dd', 'hh', 'mm']"
+      :custom-types="['yyyy', 'MM', 'dd', 'hh', 'mm']"
       :default-date="currentDate"
       @change="onDatePickerChange"
       @confirm="onDatePickerConfirm"
